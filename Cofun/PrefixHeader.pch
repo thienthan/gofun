@@ -1,0 +1,175 @@
+//
+//  PrefixHeader.pch
+//  FlimFlam
+//
+//  Created by SonHD on 10/14/14.
+//  Copyright (c) 2014 HDWebSoft. All rights reserved.
+//
+
+#ifndef FlimFlam_PrefixHeader_pch
+#define FlimFlam_PrefixHeader_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#define SharedAppDelegate ((AppDelegate*)[[UIApplication sharedApplication] delegate])
+#define Storyboard_Main ([UIStoryboard storyboardWithName:@"Main" bundle:nil])
+
+
+
+#import <Quickblox/Quickblox.h>
+
+//Iphone 4s, 5, 6.
+
+#define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+#define IS_IPHONE (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+#define IS_RETINA ([[UIScreen mainScreen] scale] >= 2.0)
+
+#define SCREEN_WIDTH ([[UIScreen mainScreen] bounds].size.width)
+#define SCREEN_HEIGHT ([[UIScreen mainScreen] bounds].size.height)
+#define SCREEN_MAX_LENGTH (MAX(SCREEN_WIDTH, SCREEN_HEIGHT))
+#define SCREEN_MIN_LENGTH (MIN(SCREEN_WIDTH, SCREEN_HEIGHT))
+
+#define IS_IPHONE_4_OR_LESS (IS_IPHONE && SCREEN_MAX_LENGTH < 568.0)
+#define IS_IPHONE_5 (IS_IPHONE && SCREEN_MAX_LENGTH == 568.0)
+#define IS_IPHONE_6 (IS_IPHONE && SCREEN_MAX_LENGTH == 667.0)
+#define IS_IPHONE_6P (IS_IPHONE && SCREEN_MAX_LENGTH == 736.0)
+
+// COLORS
+#define LABEL_COLOR_DEFAULT         [UIColor colorWithRed:83.0/255.0 green:83.0/255.0 blue:83.0/255.0 alpha:1.0]
+#define BUTTON_BACKGROUND_COLOR     [UIColor colorWithRed:88.0/255.0 green:167.0/255.0 blue:249.0/255.0 alpha:1.0]
+#define BUTTON_BORDER_COLOR         [UIColor colorWithRed:46.0/255.0 green:138.0/255.0 blue:225.0/255.0 alpha:1.0]
+
+#define BUTTON_COLOR_DEFAULT_2      [UIColor colorWithRed:102.0/255.0 green:195.0/255.0 blue:240.0/255.0 alpha:1.0]
+#define BUTTON_COLOR_WARNING        [UIColor colorWithRed:255.0/255.0 green:0.0/255.0 blue:0.0/255.0 alpha:1.0]
+
+#define BUTTON_COLOR_DISABLE        [UIColor colorWithRed:132.0/255.0 green:134.0/255.0 blue:140.0/255.0 alpha:1.0]
+#define TEXTFIELD_COLOR_DEFAULT     [UIColor colorWithRed:51.0/255.0 green:51.0/255.0 blue:51.0/255.0 alpha:1.0]
+#define NAVIGATION_BAR_COLOR        [UIColor colorWithRed:88.0/255.0 green:167.0/255.0 blue:249.0/255.0 alpha:1.0]
+
+#define GREEN_LIGHT                 [UIColor colorWithRed:192.0/255.0 green:213.0/255.0 blue:161.0/255.0 alpha:1.0]
+
+#define GRAY_LIGHT                  [UIColor colorWithRed:138.0/255.0 green:138.0/255.0 blue:138.0/255.0 alpha:1.0]
+
+
+#define FONT_BLACK              @"Lato-Black"
+#define FONT_BLACK_ITALIC       @"Lato-BlackItalic"
+#define FONT_BOLD               @"Lato-Bold"
+#define FONT_BOLD_ITALIC        @"Lato-BoldItalic"
+#define FONT_HAIRLINE           @"Lato-Hairline"
+#define FONT_HAIRLINE_ITALIC    @"Lato-HairlineItalic"
+#define FONT_ITALIC             @"Lato-Italic"
+#define FONT_LIGHT              @"Lato-Light"
+#define FONT_LIGHT_ITALIC       @"Lato-LightItalic"
+#define FONT_REGULAR            @"Lato-Regular"
+
+
+#define DEVICE_TOKEN_KEY    @"DEVICE_TOKEN"
+
+#define USER_INFO_KEY       @"USER_INFO"
+#define EMAIL_KEY           @"EMAIL"
+#define PASSWORD_KEY        @"PASSWORD"
+#define FIRST_NAME_KEY      @"FIRST_NAME"
+#define LAST_NAME_KEY       @"LAST_NAME"
+#define LOGIN_STATUS_KEY    @"LOGIN_STATUS"
+#define CARD_STATUS_KEY     @"CARD_STATUS"
+#define FIRST_LAUNCH_KEY    @"FIRST_LAUNCH_STATUS"
+
+
+#define REST_MESSAGE_KEY    @"message"
+
+
+#define REST_METHOD_SIGN_UP             @"signup"
+#define REST_METHOD_SIGN_IN             @"signin"
+#define REST_METHOD_CHANGE_PASSWORD     @"change_password"
+#define REST_METHOD_SAVE_CREDIT_CARD    @"save_credit_card"
+#define REST_METHOD_USER_DASH_BOARD     @"user_dash_board"
+#define REST_METHOD_CREATE_JOB          @"create_job"
+#define REST_METHOD_LOG_ZIPCODE         @"log_zip_code"
+#define REST_METHOD_SAVE_USER_PROFILE   @"save_user_profile"
+#define REST_METHOD_FORGOT_PASSWORD     @"forgot_password"
+
+#define REST_METHOD_UPDATE_JOB          @"update_job"
+#define REST_METHOD_SAVE_USER_INFO      @"save_user_info"
+#define REST_METHOD_GET_APP_SETTING     @"global_setting"
+#define REST_METHOD_SAVE_DEVICE_INFO    @"save_device_info"
+#define URL_DETAIL_PAGE                 @"details"
+#define URL_TERMS_CONDITIONS_PAGE       @"terms"
+#define URL_PRIVACY_PAGE                @"privacy"
+
+
+
+#define APP_MONTH_YEAR_FORMAT_STRING    @"%@ / %@"
+#define APP_MONTH_YEAR_FORMAT           @"MM / yyyy"
+#define REST_MONTH_YEAR_FORMAT          @"MM-yyyy"
+#define APP_DISPLAY_DATE_TIME_FORMAT    @"EEE, d MMM, yyyy 'at' HH:mm"
+#define REST_DATE_TIME_FORMAT           @"yyyy-MM-dd HH:mm:ss"
+#define DATE_TIME_STANDARD_FORMAT
+#define MAX_YEAR_FROM_NOW               20
+
+
+#define REGEX_ZIPCODE_LIMIT     @"^.{5,10}$"
+#define REGEX_ZIPCODE           @"^([0-9]{5})(?:[-\\s]*([0-9]{4}))?$"
+#define REGEX_PASSWORD_LIMIT    @"^.{6,20}$"
+#define REGEX_PASSWORD          @"[A-Za-z0-9]{6,20}"
+#define REGEX_USER_NAME_LIMIT   @"^.{3,15}$"
+#define REGEX_USER_NAME         @"[a-z0-9_]{3,15}"
+#define REGEX_EMAIL             @"[A-Z0-9a-z._%+-]{3,}+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}"
+#define REGEX_PHONE_US          @"((\\(\\d{3}\\) ?)|(\\d{3}-))?\\d{3}-\\d{4}"
+#define REGEX_NUMBER            @"^\\d+$"
+#define REGEX_NUMBER_COMMA      @"^\\d{1,3}([,]\\d{3})*$"
+#define REGEX_ALPHABET          @"^[a-zA-Z]+$"
+#define REGEX_ALPHA_NUMERIC     @"^[a-zA-Z0-9]+$"
+#define REGEX_CREDIT_CARD_LIMIT @"^.{10,23}$"//12-19
+#define REGEX_CVV_LIMIT         @"^.{3,4}$"
+#define CREDIT_CARD_MAX_LENGHT  19
+
+//#define REGEX_PROMOTION_CODE  @"(?i)(\\W|^)(app10|app25|discount25|discount40|discount50|craig25|craig40|craig50|freefirsthour|email25)(\\W|$)"
+
+
+#define TABLE_EMPTY_TEXT_REFRESH            @"No data is currently available.\nPlease pull down to refresh."
+#define TABLE_EMPTY_TEXT                    @"No data is currently available."
+
+#define GOOGLE_MAP_API_KEY                  @""
+#define GOOGLE_PLACE_API_KEY                @""
+
+#define GOOGLE_ANALYTICS_TRACKING_ID_PROD   @"UA-57471484-5"
+#define GOOGLE_ANALYTICS_TRACKING_ID_DEV    @"UA-57471484-6"
+
+#define GOOGLE_ADWORDS_CONVERSION_ID        @"950451954"
+#define GOOGLE_ADWORDS_CONVERSION_LABEL     @"3i18CK6OvFoQ8v2axQM"
+#define GOOGLE_ADWORDS_CONVERSION_VALUE     @"0.00"
+
+#define INSTAGRAM_SCHEME                    @""
+#define FACEBOOK_SCHEME                     @"fb988822651162960"
+#define OPTIMIZELY_SCHEME                   @"optly2659080637"
+
+#define OPTIMIZELY_API_TOKEN                @"AAM7hIkAMFgjew20QkuAIWi2Eqm-o7XO~2659080637"
+
+#define SEGMENT_WRITE_KEY_DEV               @"28NsJ0k8ruvX3eHiMFD92f5g6FAaJVjc"
+#define SEGMENT_WRITE_KEY_PROD              @"eZpGndtMCGSaGqBDyj8QknNeRTqJ0dc4"
+
+
+#define STRIPE_PUBLISHABLE_TEST_KEY         @"pk_test_jUCFE5KNSkZzwrGbgBV4ZCAk"
+#define STRIPE_PUBLISHABLE_LIVE_KEY         @"pk_live_ajlDvkmGsNl5ERPdbuqQlinh"
+
+
+#define NOTIFICATION_APP_SETTING_UPDATED    @"APP_SETTING_UPDATED"
+#define NOTIFICATION_DEVICE_TOKEN_UPDATED   @"DEVICE_TOKEN_UPDATED"
+
+#define SI_HOME_TO_ORDER_STEP1              @"HomeToOrderStep1"
+#define SI_HOME_TO_LIVE_OBSERVATIONS        @"HomeToLiveObservations"
+#define SI_LIVE_OBSERVATIONS_TO_ORDER_STEP1 @"LiveObservationsToOrderStep1"
+#define SI_ORDER_STEP1_TO_ORDER_STEP2       @"OrderStep1ToStep2"
+#define SI_ORDER_STEP2_TO_ORDER_STEP3       @"OrderStep2ToStep3"
+#define SI_ORDER_STEP2_TO_WEBVIEW           @"OrderStep2ToWebView"
+#define SI_ORDER_STEP3_TO_ORDER_STEP4       @"OrderStep3ToStep4"
+#define SI_ORDER_STEP4_TO_CASE_DETAILS      @"OrderStep4ToCaseDetails"
+
+
+// chat
+#define MSG_CASE_ID                                 @"case_id"
+#define MSG_SAVE_TO_HISTORY                         @"save_to_history"
+#define MSG_MAKE_CASE_COMPLETE                      @"make_case_complete"
+
+#endif
