@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface UIButton_Custom : UIButton
-
+@property (nonatomic) BOOL customFont;
+@property (nonatomic) BOOL customTextColor;
 @end

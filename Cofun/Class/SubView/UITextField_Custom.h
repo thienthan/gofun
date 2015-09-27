@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TextFieldValidator.h"
 
-@interface UITextField_Custom : UITextField
+@interface UITextField_Custom : TextFieldValidator
+@property (nonatomic) BOOL customFont;
+@property (nonatomic) BOOL customTextColor;
+@property (nonatomic) BOOL hideClearButton;
 
+- (BOOL)isHideClearButton;
 @end

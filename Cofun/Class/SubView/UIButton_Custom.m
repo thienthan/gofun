@@ -10,12 +10,47 @@
 
 @implementation UIButton_Custom
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    
+    if (self.customFont == NO) {
+        NSString *fontName = FONT_DEFAULT;
+        if( [[self.titleLabel.font fontName] rangeOfString:@"Bold"].location != NSNotFound || [[self.titleLabel.font fontName] rangeOfString:@"Medium"].location != NSNotFound)
+            fontName = FONT_BOLD;
+        self.titleLabel.font = [UIFont fontWithName:fontName size:self.titleLabel.font.pointSize];
+    }
+    
+    if (self.customTextColor == NO) {
+        [self setTitleColor:BUTTON_COLOR_DEFAULT forState:UIControlStateNormal];
+        [self setTitleColor:BUTTON_COLOR_DEFAULT forState:UIControlStateHighlighted];
+    }
+    
+    [self.layer setCornerRadius:3.0];
+    [self.layer setMasksToBounds:YES];
+    [self.layer setBorderWidth:1.0];
+    [self.layer setBorderColor:BUTTON_COLOR_DEFAULT.CGColor];
 }
-*/
+
+- (void)setEnabled:(BOOL)enabled {
+    
+    [super setEnabled:enabled];
+    
+    if (enabled) {
+        if (self.customTextColor == NO) {
+            [self setTitleColor:BUTTON_COLOR_DEFAULT forState:UIControlStateNormal];
+        }
+        [self.layer setBorderColor:BUTTON_COLOR_DEFAULT.CGColor];
+    } else {
+        if (self.customTextColor == NO) {
+            [self setTitleColor:BUTTON_COLOR_DISABLE forState:UIControlStateNormal];
+        }
+        [self.layer setBorderColor:BUTTON_COLOR_DISABLE.CGColor];
+    }
+}
+
+- (BOOL)isExclusiveTouch {
+    
+    return YES;
+}
 
 @end

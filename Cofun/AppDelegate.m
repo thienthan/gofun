@@ -14,15 +14,46 @@
 
 @implementation AppDelegate
 
+#pragma mark
+
+#pragma mark
+- (void)setupFacebookLogin {
+    
+    //facebook setting
+    [FBSDKProfile enableUpdatesOnAccessTokenChange:YES];
+    [FBSDKLoginButton class];
+}
+#pragma mark - OpenURL
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation {
+    
+    NSLog(@"Url scheme: %@", [url scheme]);
+    
+    //if (self.isFacebookLogin)
+    if ([[url scheme] isEqualToString:FACEBOOK_SCHEME]) {
+        return [[FBSDKApplicationDelegate sharedInstance] application:application
+                                                              openURL:url
+                                                    sourceApplication:sourceApplication
+                                                           annotation:annotation];
+    }
+    return nil;
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+   // [self setupGoogleSignIn];
+    [self setupFacebookLogin];
     return YES;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"applicationWillResignActive" object:Nil];
+
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
@@ -36,6 +67,8 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"applicationDidBecomeActive" object:Nil];
+
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {

@@ -9,5 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface UILabel_Custom : UILabel
+@property (nonatomic) BOOL customFont;
+@property (nonatomic) BOOL customTextColor;
 
++ (UIFont*)getTabbFont:(CGFloat)size;
++ (UIColor *)getTabbTextColor;
 @end

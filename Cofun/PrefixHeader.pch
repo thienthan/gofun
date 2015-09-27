@@ -13,11 +13,7 @@
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
 
 #define SharedAppDelegate ((AppDelegate*)[[UIApplication sharedApplication] delegate])
-#define Storyboard_Main ([UIStoryboard storyboardWithName:@"Main" bundle:nil])
-
-
-
-#import <Quickblox/Quickblox.h>
+//#define Storyboard_Main ([UIStoryboard storyboardWithName:@"Main" bundle:nil])
 
 //Iphone 4s, 5, 6.
 
@@ -39,6 +35,7 @@
 #define LABEL_COLOR_DEFAULT         [UIColor colorWithRed:83.0/255.0 green:83.0/255.0 blue:83.0/255.0 alpha:1.0]
 #define BUTTON_BACKGROUND_COLOR     [UIColor colorWithRed:88.0/255.0 green:167.0/255.0 blue:249.0/255.0 alpha:1.0]
 #define BUTTON_BORDER_COLOR         [UIColor colorWithRed:46.0/255.0 green:138.0/255.0 blue:225.0/255.0 alpha:1.0]
+#define BUTTON_COLOR_DEFAULT        [UIColor colorWithRed:57.0/255.0 green:139.0/255.0 blue:188.0/255.0 alpha:1.0]
 
 #define BUTTON_COLOR_DEFAULT_2      [UIColor colorWithRed:102.0/255.0 green:195.0/255.0 blue:240.0/255.0 alpha:1.0]
 #define BUTTON_COLOR_WARNING        [UIColor colorWithRed:255.0/255.0 green:0.0/255.0 blue:0.0/255.0 alpha:1.0]
@@ -52,16 +49,38 @@
 #define GRAY_LIGHT                  [UIColor colorWithRed:138.0/255.0 green:138.0/255.0 blue:138.0/255.0 alpha:1.0]
 
 
-#define FONT_BLACK              @"Lato-Black"
-#define FONT_BLACK_ITALIC       @"Lato-BlackItalic"
-#define FONT_BOLD               @"Lato-Bold"
-#define FONT_BOLD_ITALIC        @"Lato-BoldItalic"
-#define FONT_HAIRLINE           @"Lato-Hairline"
-#define FONT_HAIRLINE_ITALIC    @"Lato-HairlineItalic"
-#define FONT_ITALIC             @"Lato-Italic"
-#define FONT_LIGHT              @"Lato-Light"
-#define FONT_LIGHT_ITALIC       @"Lato-LightItalic"
-#define FONT_REGULAR            @"Lato-Regular"
+
+// FONTS
+#define FONT_DEFAULT            @"HelveticaNeue-Light"
+
+#define FONT_BOLD               @"HelveticaNeue-Bold"
+#define FONT_BOLD_ITALIC        @"HelveticaNeue-BoldItalic"
+#define FONT_ITALIC             @"HelveticaNeue-Italic"
+#define FONT_LIGHT              @"HelveticaNeue-Light"
+#define FONT_LIGHT_ITALIC       @"HelveticaNeue-LightItalic"
+#define FONT_MEDIUM             @"HelveticaNeue-Medium"
+#define FONT_MEDIUM_ITALIC      @"HelveticaNeue-MediumItalic"
+#define FONT_REGULAR            @"HelveticaNeue"
+#define FONT_THIN               @"HelveticaNeue-Thin"
+#define FONT_THIN_ITALIC        @"HelveticaNeue-ThinItalic"
+#define FONT_ULTRA_LIGHT        @"HelveticaNeue-UltraLight"
+#define FONT_ULTRA_LIGHT_ITALIC @"HelveticaNeue-UltraLightItalic"
+#define FONT_COND_BLACK         @"HelveticaNeue-CondensedBlack"
+#define FONT_COND_BOLD          @"HelveticaNeue-CondensedBold"
+
+
+//#define FONT_BLACK              @"Lato-Black"
+//#define FONT_BLACK_ITALIC       @"Lato-BlackItalic"
+//#define FONT_BOLD               @"Lato-Bold"
+//#define FONT_BOLD_ITALIC        @"Lato-BoldItalic"
+//#define FONT_HAIRLINE           @"Lato-Hairline"
+//#define FONT_HAIRLINE_ITALIC    @"Lato-HairlineItalic"
+//#define FONT_ITALIC             @"Lato-Italic"
+//#define FONT_LIGHT              @"Lato-Light"
+//#define FONT_LIGHT_ITALIC       @"Lato-LightItalic"
+//#define FONT_REGULAR            @"Lato-Regular"
+
+
 
 
 #define DEVICE_TOKEN_KEY    @"DEVICE_TOKEN"
@@ -141,7 +160,7 @@
 #define GOOGLE_ADWORDS_CONVERSION_VALUE     @"0.00"
 
 #define INSTAGRAM_SCHEME                    @""
-#define FACEBOOK_SCHEME                     @"fb988822651162960"
+#define FACEBOOK_SCHEME                     @"fb859391614168503"
 #define OPTIMIZELY_SCHEME                   @"optly2659080637"
 
 #define OPTIMIZELY_API_TOKEN                @"AAM7hIkAMFgjew20QkuAIWi2Eqm-o7XO~2659080637"
