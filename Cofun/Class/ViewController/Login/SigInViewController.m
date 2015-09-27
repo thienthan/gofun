@@ -46,6 +46,7 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *constraintsGofun;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *constraintGoFunBottom;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *constraintsLoginTop;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *contraintsShowPassBottom;
 
 
 @property (nonatomic, assign) CATransform3D initialTransform;
@@ -62,6 +63,13 @@
     AVPlayer *_player;
     AVPlayerLayer *avPlayerLayer;
     BOOL _isChangeSignup;
+    
+    
+    CGFloat constraintsGofun_;
+    CGFloat constraintGoFunBottom_;
+    CGFloat constraintsLoginTop_;
+    CGFloat contraintsShowPassBottom_;
+
 }
 #pragma mark - Self
 
@@ -71,22 +79,44 @@
     _isChangeSignup = NO;
     [self setUIPlurForView];
     [self setupUI];
+    [self fixAutolayoutUI];
 }
+- (void)fixAutolayoutUI {
+    
+    constraintGoFunBottom_= self.constraintGoFunBottom.constant;
+    constraintsGofun_ = self.constraintsGofun.constant;
+    constraintsLoginTop_ = self.constraintsLoginTop.constant;
+    contraintsShowPassBottom_ = self.contraintsShowPassBottom.constant;
+    
+    //custom for iphone 4s
+    if (IS_IPHONE_4S) {
+        self.constraintsGofun.constant = constraintGoFunBottom_ - 50;
+        self.constraintGoFunBottom.constant = constraintsGofun_ - 50;
+        self.constraintsLoginTop.constant = constraintsLoginTop_ + 25;
+        self.contraintsShowPassBottom.constant = contraintsShowPassBottom_ +25;
+    }else {
+        self.constraintsGofun.constant = constraintGoFunBottom_;
+        self.constraintGoFunBottom.constant = constraintsGofun_;
+        self.constraintsLoginTop.constant = constraintsLoginTop_;
+        self.contraintsShowPassBottom.constant = contraintsShowPassBottom_ ;
 
+        
+    }
+}
 - (void)setupUI {
     
     
     
-    UIView *viewtfEmail = [[UIView alloc] initWithFrame:CGRectMake(0, self.tfEmail.frame.size.height - 1, self.tfEmail.frame.size.width, 1)];
+    UIView *viewtfEmail = [[UIView alloc] initWithFrame:CGRectMake(0, self.tfEmail.frame.size.height - 1,SCREEN_WIDTH - self.tfEmail.frame.origin.x*2, 1)];
     viewtfEmail.backgroundColor = [UIColor colorWithRed:74/255.f green:182/255.f blue:125/255.f alpha:1];
-    UIView *viewtfPassword = [[UIView alloc] initWithFrame:CGRectMake(0, self.tfPassword.frame.size.height - 1, self.tfPassword.frame.size.width, 1)];
+    UIView *viewtfPassword = [[UIView alloc] initWithFrame:CGRectMake(0, self.tfPassword.frame.size.height - 1, SCREEN_WIDTH - self.tfEmail.frame.origin.x*2, 1)];
     viewtfPassword.backgroundColor = [UIColor colorWithRed:74/255.f green:182/255.f blue:125/255.f alpha:1];
     
-    UIView *viewtfEmailSignup = [[UIView alloc] initWithFrame:CGRectMake(0, self.tfEmailSignup.frame.size.height - 1, self.tfEmailSignup.frame.size.width, 1)];
+    UIView *viewtfEmailSignup = [[UIView alloc] initWithFrame:CGRectMake(0, self.tfEmailSignup.frame.size.height - 1, SCREEN_WIDTH - self.tfEmail.frame.origin.x*2, 1)];
     viewtfEmailSignup.backgroundColor = [UIColor colorWithRed:74/255.f green:182/255.f blue:125/255.f alpha:1];
-    UIView *viewtfPasswordSignup = [[UIView alloc] initWithFrame:CGRectMake(0, self.tfPasswordSignup.frame.size.height - 1, self.tfPasswordSignup.frame.size.width, 1)];
+    UIView *viewtfPasswordSignup = [[UIView alloc] initWithFrame:CGRectMake(0, self.tfPasswordSignup.frame.size.height - 1, SCREEN_WIDTH - self.tfEmail.frame.origin.x*2, 1)];
     viewtfPasswordSignup.backgroundColor = [UIColor colorWithRed:74/255.f green:182/255.f blue:125/255.f alpha:1];
-    UIView *viewtfUsernameSignup = [[UIView alloc] initWithFrame:CGRectMake(0, self.tfUsernameSignup.frame.size.height - 1, self.tfUsernameSignup.frame.size.width, 1)];
+    UIView *viewtfUsernameSignup = [[UIView alloc] initWithFrame:CGRectMake(0, self.tfUsernameSignup.frame.size.height - 1, SCREEN_WIDTH - self.tfEmail.frame.origin.x*2, 1)];
     viewtfUsernameSignup.backgroundColor = [UIColor colorWithRed:74/255.f green:182/255.f blue:125/255.f alpha:1];
 
     
@@ -165,17 +195,7 @@
     _initialTransformViewForget = transform4;
     
     
-    //custom for iphone 4s
-    if (IS_IPHONE_4S) {
-        self.constraintsGofun.constant = 20;
-        self.constraintGoFunBottom.constant = 20;
-        self.constraintsLoginTop.constant = 73;
-    }else {
-        self.constraintsGofun.constant = 71;
-        self.constraintGoFunBottom.constant = 72;
-        self.constraintsLoginTop.constant = 48;
 
-    }
 }
 
 -(void) setUIPlurForView {
@@ -324,6 +344,17 @@
         self.viewTfSignUp.layer.transform = CATransform3DIdentity;
         self.viewTfSignUp.layer.opacity = 1;
     }];
+    
+    
+    if (IS_IPHONE_4S) {
+        self.contraintsShowPassBottom.constant = contraintsShowPassBottom_ -25;
+        
+    }
+    
+    if (IS_IPHONE_6 || IS_IPHONE_6_PLUS) {
+        
+        self.constraintGoFunBottom.constant = contraintsShowPassBottom_+20;
+    }
 }
 
 - (IBAction)btForgotPassword:(id)sender {
@@ -356,6 +387,15 @@
         self.viewForgotPW.layer.transform = self.viewSignupBot.layer.transform = CATransform3DIdentity;
         self.viewForgotPW.layer.opacity = self.viewSignupBot.layer.opacity = 1;
     }];
+    
+    if (IS_IPHONE_4S) {
+        self.contraintsShowPassBottom.constant = contraintsShowPassBottom_ +25;
+
+    }
+    if (IS_IPHONE_6 || IS_IPHONE_6_PLUS) {
+        
+        self.constraintGoFunBottom.constant = contraintsShowPassBottom_;
+    }
 }
 
 - (void)didReceiveMemoryWarning {
