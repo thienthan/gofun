@@ -10,12 +10,29 @@
 
 @implementation UILabel_Custom
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    
+    if (self.customFont == NO) {
+        NSString *fontName = FONT_DEFAULT;
+        if( [[self.font fontName] rangeOfString:@"Bold"].location != NSNotFound || [[self.font fontName] rangeOfString:@"Medium"].location != NSNotFound)
+            fontName = FONT_BOLD;
+        
+        [self setFont:[UIFont fontWithName:fontName size:self.font.pointSize]];
+    }
+    
+    if (self.customTextColor == NO) {
+        [self setTextColor:LABEL_COLOR_DEFAULT];
+    }
 }
-*/
 
++ (UIFont *)getTabbFont:(CGFloat)size {
+    
+    return [UIFont fontWithName:FONT_BOLD size:size];
+}
+
++ (UIColor *)getTabbTextColor {
+    
+    return LABEL_COLOR_DEFAULT;
+}
 @end
