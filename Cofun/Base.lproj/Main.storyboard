@@ -219,8 +219,8 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Xw-WW-Ds4">
                                         <rect key="frame" x="251" y="283" width="39" height="32"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="32" id="0sx-kS-0dK"/>
-                                            <constraint firstAttribute="width" constant="39" id="VhU-Eh-Ze7"/>
+                                            <constraint firstAttribute="width" constant="39" id="MdQ-bu-c1G"/>
+                                            <constraint firstAttribute="height" constant="32" id="ONh-M6-WHS"/>
                                         </constraints>
                                         <state key="normal" image="show_pass.png"/>
                                         <connections>
@@ -316,11 +316,9 @@
                                     <constraint firstAttribute="trailing" secondItem="gTx-rm-FHR" secondAttribute="trailing" constant="30" id="24x-Dv-c5P"/>
                                     <constraint firstItem="F9Y-tX-rE2" firstAttribute="top" secondItem="gTx-rm-FHR" secondAttribute="bottom" constant="20" id="2rX-6c-vuX"/>
                                     <constraint firstItem="Osn-Ob-FLN" firstAttribute="leading" secondItem="hP3-6X-Dby" secondAttribute="trailing" constant="28" id="2ww-yN-Diu"/>
-                                    <constraint firstItem="4Xw-WW-Ds4" firstAttribute="leading" secondItem="cgt-0Z-BB2" secondAttribute="leading" constant="251" id="CAa-fa-7gc"/>
                                     <constraint firstItem="df2-1n-iOz" firstAttribute="leading" secondItem="cgt-0Z-BB2" secondAttribute="leading" constant="95" id="Do8-QG-oUX"/>
                                     <constraint firstItem="BT4-gY-OGn" firstAttribute="leading" secondItem="cgt-0Z-BB2" secondAttribute="leading" constant="30" id="DpR-PO-ggt"/>
                                     <constraint firstItem="gTx-rm-FHR" firstAttribute="leading" secondItem="cgt-0Z-BB2" secondAttribute="leading" constant="30" id="EXf-a0-IFV"/>
-                                    <constraint firstItem="4Xw-WW-Ds4" firstAttribute="top" secondItem="gTx-rm-FHR" secondAttribute="bottom" constant="29" id="G0t-32-MDd"/>
                                     <constraint firstAttribute="trailing" secondItem="33i-h3-fbj" secondAttribute="trailing" constant="30" id="IBg-hU-bl9"/>
                                     <constraint firstAttribute="trailing" secondItem="F9Y-tX-rE2" secondAttribute="trailing" constant="30" id="L9F-13-BzN"/>
                                     <constraint firstItem="hP3-6X-Dby" firstAttribute="leading" secondItem="cgt-0Z-BB2" secondAttribute="leading" constant="16" id="O1r-Ev-oif"/>
@@ -328,6 +326,8 @@
                                     <constraint firstItem="7l3-2L-pXB" firstAttribute="centerX" secondItem="cgt-0Z-BB2" secondAttribute="centerX" id="R2K-GE-SBf"/>
                                     <constraint firstItem="oyd-2e-Qpo" firstAttribute="leading" secondItem="cgt-0Z-BB2" secondAttribute="leading" constant="30" id="SlF-RR-iYa"/>
                                     <constraint firstItem="7l3-2L-pXB" firstAttribute="top" secondItem="df2-1n-iOz" secondAttribute="bottom" constant="5" id="Tgt-Ni-02y"/>
+                                    <constraint firstItem="oyd-2e-Qpo" firstAttribute="top" secondItem="4Xw-WW-Ds4" secondAttribute="bottom" constant="57" id="VcB-cq-ep1"/>
+                                    <constraint firstAttribute="trailing" secondItem="4Xw-WW-Ds4" secondAttribute="trailing" constant="30" id="Ytu-xp-4Gx"/>
                                     <constraint firstItem="F9Y-tX-rE2" firstAttribute="leading" secondItem="cgt-0Z-BB2" secondAttribute="leading" constant="30" id="Yv3-Ke-WRU"/>
                                     <constraint firstItem="7l3-2L-pXB" firstAttribute="leading" secondItem="cgt-0Z-BB2" secondAttribute="leading" constant="30" id="Z4R-M4-L85"/>
                                     <constraint firstAttribute="bottom" secondItem="Osn-Ob-FLN" secondAttribute="bottom" constant="14" id="b6v-eg-gDn"/>
@@ -339,7 +339,6 @@
                                     <constraint firstItem="df2-1n-iOz" firstAttribute="top" secondItem="cgt-0Z-BB2" secondAttribute="top" constant="71" id="gkU-Md-2uw"/>
                                     <constraint firstAttribute="bottom" secondItem="33i-h3-fbj" secondAttribute="bottom" constant="14" id="h2t-Zj-Ee1"/>
                                     <constraint firstItem="gTx-rm-FHR" firstAttribute="top" secondItem="df2-1n-iOz" secondAttribute="bottom" constant="72" id="ikI-d9-t2F"/>
-                                    <constraint firstAttribute="trailing" secondItem="4Xw-WW-Ds4" secondAttribute="trailing" constant="30" id="pEt-pX-Mhx"/>
                                     <constraint firstItem="33i-h3-fbj" firstAttribute="leading" secondItem="cgt-0Z-BB2" secondAttribute="leading" constant="30" id="rmu-J8-z9Z"/>
                                     <constraint firstItem="hP3-6X-Dby" firstAttribute="width" secondItem="Osn-Ob-FLN" secondAttribute="width" id="snf-hr-NYd"/>
                                     <constraint firstAttribute="trailing" secondItem="df2-1n-iOz" secondAttribute="trailing" constant="95" id="x11-Oc-IL4"/>
@@ -366,6 +365,7 @@
                         <outlet property="constraintGoFunBottom" destination="ikI-d9-t2F" id="Y5u-FL-nbC"/>
                         <outlet property="constraintsGofun" destination="gkU-Md-2uw" id="HhP-96-Ia0"/>
                         <outlet property="constraintsLoginTop" destination="bjR-dA-AFe" id="UQz-sD-Q8F"/>
+                        <outlet property="contraintsShowPassBottom" destination="VcB-cq-ep1" id="CUY-AL-fIj"/>
                         <outlet property="lbNewUserSignUp" destination="f4I-GL-7jG" id="u96-5M-vMA"/>
                         <outlet property="lbSignupFB" destination="ag8-9C-Yos" id="Xic-RI-idf"/>
                         <outlet property="tfEmail" destination="gTx-rm-FHR" id="pcF-tG-wHf"/>

@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "88B1E23FC0D60C6DD2D47329"
+               BlueprintIdentifier = "7E0EF124BA43C01C67F68E87"
                BuildableName = "libLTHMonthYearPickerView.a"
                BlueprintName = "LTHMonthYearPickerView"
                ReferencedContainer = "container:Pods.xcodeproj">

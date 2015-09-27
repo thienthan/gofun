@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F16ABEBD7E82DB8DAA0EB34C"
+               BlueprintIdentifier = "C0D71E22CEDEA70F53473A8A"
                BuildableName = "libObjectiveLuhn.a"
                BlueprintName = "ObjectiveLuhn"
                ReferencedContainer = "container:Pods.xcodeproj">
