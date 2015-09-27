@@ -247,9 +247,7 @@
              NSString *email = [result objectForKey:@"email"];
              NSString *userId = [result objectForKey:@"id"];
              
-             
              [hud hide:YES];
-             
              
              [[[UIAlertView alloc] initWithTitle:@"LOGIN THÀNH CÔNG!" message:nil delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil] show];
 
