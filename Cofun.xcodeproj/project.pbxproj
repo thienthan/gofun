@@ -192,6 +192,8 @@
 		32AF80571BB45F2600576D1F /* blurimage2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 32AF80561BB45F2600576D1F /* blurimage2.jpg */; settings = {ASSET_TAGS = (); }; };
 		32AF80591BB4636100576D1F /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32AF80581BB4636100576D1F /* CoreText.framework */; };
 		ABE9053A9C083CD95FCAA297 /* libPods-Cofun.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BD1E8F21CE77CEFCD3950B2 /* libPods-Cofun.a */; };
+		D3CF57EB1BB7B8E200973F3B /* loadding.png in Resources */ = {isa = PBXBuildFile; fileRef = D3CF57EA1BB7B8E200973F3B /* loadding.png */; settings = {ASSET_TAGS = (); }; };
+		D3CF57ED1BB7D1C100973F3B /* StoryboardofHau.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3CF57EC1BB7D1C100973F3B /* StoryboardofHau.storyboard */; settings = {ASSET_TAGS = (); }; };
 		D3E51A391BB6C75F00ADD519 /* iconGonfun.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D3E51A381BB6C75F00ADD519 /* iconGonfun.jpg */; settings = {ASSET_TAGS = (); }; };
 		D3E51A3B1BB6F24300ADD519 /* videoLogin.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = D3E51A3A1BB6F24300ADD519 /* videoLogin.mp4 */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
@@ -458,6 +460,8 @@
 		32AF80581BB4636100576D1F /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		7BD1E8F21CE77CEFCD3950B2 /* libPods-Cofun.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Cofun.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B331421EA4AEFCC35C0382D4 /* Pods-Cofun.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cofun.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Cofun/Pods-Cofun.debug.xcconfig"; sourceTree = "<group>"; };
+		D3CF57EA1BB7B8E200973F3B /* loadding.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loadding.png; sourceTree = "<group>"; };
+		D3CF57EC1BB7D1C100973F3B /* StoryboardofHau.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = StoryboardofHau.storyboard; sourceTree = "<group>"; };
 		D3E51A381BB6C75F00ADD519 /* iconGonfun.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = iconGonfun.jpg; sourceTree = "<group>"; };
 		D3E51A3A1BB6F24300ADD519 /* videoLogin.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = videoLogin.mp4; sourceTree = "<group>"; };
 		D736AAAEAA98506861E91155 /* Pods-Cofun.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cofun.release.xcconfig"; path = "Pods/Target Support Files/Pods-Cofun/Pods-Cofun.release.xcconfig"; sourceTree = "<group>"; };
@@ -503,12 +507,14 @@
 				324F3D621BB43AA700170CB7 /* ViewController.h */,
 				324F3D631BB43AA700170CB7 /* ViewController.m */,
 				324F3D651BB43AA700170CB7 /* Main.storyboard */,
+				D3CF57EC1BB7D1C100973F3B /* StoryboardofHau.storyboard */,
 				324F3E731BB43DD300170CB7 /* PrefixHeader.pch */,
 				324F3D6B1BB43AA700170CB7 /* Assets.xcassets */,
 				324F3D6D1BB43AA700170CB7 /* LaunchScreen.storyboard */,
 				324F3D701BB43AA700170CB7 /* Info.plist */,
 				324F3D681BB43AA700170CB7 /* Cofun.xcdatamodeld */,
 				D3E51A381BB6C75F00ADD519 /* iconGonfun.jpg */,
+				D3CF57EA1BB7B8E200973F3B /* loadding.png */,
 				324F3D5C1BB43AA700170CB7 /* Supporting Files */,
 			);
 			path = Cofun;
@@ -1246,6 +1252,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				324F3E661BB43C2900170CB7 /* TextFieldValidator.bundle in Resources */,
+				D3CF57ED1BB7D1C100973F3B /* StoryboardofHau.storyboard in Resources */,
 				324F3F051BB43F3600170CB7 /* ic_ar_right_blue@3x.png in Resources */,
 				324F3F3A1BB43F3600170CB7 /* ic_setting_white@2x.png in Resources */,
 				324F3F261BB43F3600170CB7 /* ic_nav_back@2x.png in Resources */,
@@ -1318,6 +1325,7 @@
 				324F3EF21BB43F3600170CB7 /* avatar@2x.png in Resources */,
 				324F3F221BB43F3600170CB7 /* ic_location_white@2x.png in Resources */,
 				324F3F0A1BB43F3600170CB7 /* ic_call_white@2x.png in Resources */,
+				D3CF57EB1BB7B8E200973F3B /* loadding.png in Resources */,
 				324F3F401BB43F3600170CB7 /* ic_stripe_card@2x.png in Resources */,
 				324F3F021BB43F3600170CB7 /* ic_ar_right@2x.png in Resources */,
 				324F3EFF1BB43F3600170CB7 /* ic_about@3x.png in Resources */,
