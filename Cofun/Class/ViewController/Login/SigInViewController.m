@@ -43,6 +43,11 @@
 @property (weak, nonatomic) IBOutlet UILabel *lbNewUserSignUp;
 @property (weak, nonatomic) IBOutlet UIView  *viewTfSignUp;;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *constraintsGofun;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *constraintGoFunBottom;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *constraintsLoginTop;
+
+
 @property (nonatomic, assign) CATransform3D initialTransform;
 @property (nonatomic, assign) CATransform3D initialTransformViewSignUp;
 
@@ -158,7 +163,19 @@
     transform4 = CATransform3DTranslate(transform4, offsetPositioning4.x, offsetPositioning4.y, 0.0);
     transform4 = CATransform3DRotate(transform4, 0.0, 0.0, 0.0, 1.0);
     _initialTransformViewForget = transform4;
+    
+    
+    //custom for iphone 4s
+    if (IS_IPHONE_4S) {
+        self.constraintsGofun.constant = 20;
+        self.constraintGoFunBottom.constant = 20;
+        self.constraintsLoginTop.constant = 73;
+    }else {
+        self.constraintsGofun.constant = 71;
+        self.constraintGoFunBottom.constant = 72;
+        self.constraintsLoginTop.constant = 48;
 
+    }
 }
 
 -(void) setUIPlurForView {
