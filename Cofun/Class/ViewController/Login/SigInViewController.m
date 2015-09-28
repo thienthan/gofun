@@ -490,6 +490,9 @@
         
         self.constraintGoFunBottom.constant = contraintsShowPassBottom_+20;
     }
+    
+
+
 }
 
 - (IBAction)btForgotPassword:(id)sender {

@@ -7,15 +7,152 @@
 //
 
 #import "AppDelegate.h"
+#import <MapKit/MapKit.h>
+#import <CoreLocation/CoreLocation.h>
 
-@interface AppDelegate ()
+@interface AppDelegate () {
+    
+    CLLocationManager *locationManager;
+    CLLocation *myLocation;
+}
 
 @end
 
 @implementation AppDelegate
 
-#pragma mark
+#pragma mark - location
+- (void)setUpGetLocation
+{
+    // if location services are restricted do nothing
+    if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied ||
+        [CLLocationManager authorizationStatus] == kCLAuthorizationStatusRestricted ) {
+        return;
+    }
+    
+    // if locationManager does not currently exist, create it
+    if (locationManager == nil)
+    {
+        locationManager = [[CLLocationManager alloc] init];
+        [locationManager setDelegate:self];
+        locationManager.distanceFilter = 10.0f; // we don't need to be any more accurate than 10m
+    }
+    
+    // for iOS 8, specific user level permission is required,
+    // "when-in-use" authorization grants access to the user's location
+    //
+    // important: be sure to include NSLocationWhenInUseUsageDescription along with its
+    // explanation string in your Info.plist or startUpdatingLocation will not work.
+    //
+    if ([locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)])
+    {
+        [locationManager requestWhenInUseAuthorization];
+    }
+    // The user has not enabled any location services. Request background authorization.
+    
+    [locationManager startUpdatingLocation];
+    
+    // Start heading updates.
+    if ([CLLocationManager headingAvailable]) {
+        locationManager.headingFilter = 5;
+        [locationManager startUpdatingHeading];
+    }
 
+}
+
+#pragma mark -my Location
+
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
+{
+    NSLog(@"didFailWithError: %@", error);
+
+}
+- (void)locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)newHeading {
+    if (newHeading.headingAccuracy < 0)
+        return;
+
+}
+- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
+{
+    
+    myLocation = newLocation;
+    CLLocationCoordinate2D myCoordinate2D;
+    if (myLocation != nil)
+    {
+        myCoordinate2D.latitude=myLocation.coordinate.latitude;
+        myCoordinate2D.longitude=myLocation.coordinate.longitude;
+        
+        [locationManager stopUpdatingLocation];
+        
+        CLGeocoder *geocoder = [[CLGeocoder alloc] init] ;
+        
+        [geocoder reverseGeocodeLocation:myLocation completionHandler:^(NSArray *placemarks, NSError *error)
+         {
+             if (!(error))
+             {
+                 CLPlacemark *placemark = [placemarks objectAtIndex:0];
+                 NSLog(@"\nCurrent Location Detected\n");
+                 NSLog(@"placemark %@",placemark);
+                 NSString *locatedAt = [[placemark.addressDictionary valueForKey:@"FormattedAddressLines"] componentsJoinedByString:@", "];
+                 NSString *Address = [[NSString alloc]initWithString:locatedAt];
+                 NSString *Area = [[NSString alloc]initWithString:placemark.locality];
+                 NSString *Country = [[NSString alloc]initWithString:placemark.country];
+                 NSString *CountryArea = [NSString stringWithFormat:@"%@, %@", Area,Country];
+                 NSLog(@"%@",CountryArea);
+                
+                 if ([Country isEqualToString:@"Vietnam"]) {
+                     
+                     self.isCheckInVietNam = YES;
+                     [[[UIAlertView alloc] initWithTitle:@"Thông báo" message:CountryArea delegate:nil
+                                       cancelButtonTitle:nil otherButtonTitles:@"OK", nil] show];
+                 }
+             }
+             else
+             {
+                 NSLog(@"Geocode failed with error %@", error);
+                 NSLog(@"\nCurrent Location Not Detected\n");
+                 //return;
+                // CountryArea = NULL;
+             }
+             /*---- For more results
+              placemark.region);
+              placemark.country);
+              placemark.locality);
+              placemark.name);
+              placemark.ocean);
+              placemark.postalCode);
+              placemark.subLocality);
+              placemark.location);
+              ------*/
+         }];
+    }
+}
+- (void)requestAlwaysAuthorization
+{
+    CLAuthorizationStatus status = [CLLocationManager authorizationStatus];
+    
+    // If the status is denied or only granted for when in use, display an alert
+    if (status == kCLAuthorizationStatusDenied) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Turn On Location Services to Allow Maps to Determine Your Location"
+                                                            message:nil
+                                                           delegate:self
+                                                  cancelButtonTitle:@"Cancel"
+                                                  otherButtonTitles:@"Settings", nil];
+        [alertView show];
+    }
+    // The user has not enabled any location services. Request background authorization.
+    else if (status == kCLAuthorizationStatusNotDetermined) {
+        [locationManager requestAlwaysAuthorization];
+    }
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1) {
+        // Send the user to the Settings for this app
+        NSURL *settingsURL = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
+        [[UIApplication sharedApplication] openURL:settingsURL];
+    }
+}
 #pragma mark
 - (void)setupFacebookLogin {
     
@@ -40,11 +177,17 @@
     }
     return nil;
 }
+#pragma mark - Cllocation
+
+#pragma mark - Start app
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
    // [self setupGoogleSignIn];
     [self setupFacebookLogin];
+    [self setUpGetLocation];
+    [self requestAlwaysAuthorization];
+
     return YES;
 }
 
