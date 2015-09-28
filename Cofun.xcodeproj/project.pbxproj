@@ -1225,6 +1225,7 @@
 				TargetAttributes = {
 					324F3D581BB43AA700170CB7 = {
 						CreatedOnToolsVersion = 7.0;
+						DevelopmentTeam = 45D84HJ79U;
 					};
 				};
 			};
@@ -1591,11 +1592,12 @@
 			baseConfigurationReference = B331421EA4AEFCC35C0382D4 /* Pods-Cofun.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = Cofun/PrefixHeader.pch;
 				INFOPLIST_FILE = Cofun/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "learn-it.com.vn.Cofun";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tabsd.de;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1606,11 +1608,12 @@
 			baseConfigurationReference = D736AAAEAA98506861E91155 /* Pods-Cofun.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = Cofun/PrefixHeader.pch;
 				INFOPLIST_FILE = Cofun/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "learn-it.com.vn.Cofun";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tabsd.de;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

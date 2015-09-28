@@ -25,9 +25,12 @@
 #import "ViewController.h"
 @interface SigInViewController ()<UITextFieldDelegate>
 
-@property (weak, nonatomic) IBOutlet UIView        *viewSignupBot;
-@property (weak, nonatomic) IBOutlet UIView        *viewForgotPW;
-@property (strong, nonatomic) IBOutlet UIView        *viewLoading;
+@property (weak, nonatomic)   IBOutlet UIView          *viewSignupBot;
+@property (weak, nonatomic)   IBOutlet UIView          *viewForgotPW;
+@property (strong, nonatomic) IBOutlet UIView          *viewLoading;
+@property (weak, nonatomic)   IBOutlet UIView          *viewTfSignUp;;
+@property (weak, nonatomic)   IBOutlet UIView          *viewTfLogin;
+
 @property (strong, nonatomic) IBOutlet UIImageView   *imgLoading;
 
 @property (weak, nonatomic) IBOutlet UIButton *btnLogin;
@@ -44,7 +47,6 @@
 
 @property (weak, nonatomic) IBOutlet FBSDKLoginButton *btSignInFacebook;
 @property (weak, nonatomic) IBOutlet UILabel *lbNewUserSignUp;
-@property (weak, nonatomic) IBOutlet UIView  *viewTfSignUp;;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *constraintsGofun;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *constraintGoFunBottom;
@@ -85,8 +87,17 @@
     [self setUIPlurForView];
     [self setupUI];
     [self fixAutolayoutUI];
-
+    [self setpermissionsforFacebook];
 }
+
+- (void)setpermissionsforFacebook {
+    self.btSignInFacebook.readPermissions = @[@"public_profile", @"email", @"user_friends"];
+    
+    // setup facebook notification
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(fBSDKAccessTokenDidChangeNotification:)
+                                                 name:FBSDKAccessTokenDidChangeNotification object:nil];
+}
+
 - (void)fixAutolayoutUI {
     
     constraintGoFunBottom_= self.constraintGoFunBottom.constant;
@@ -110,6 +121,10 @@
         
     }
 }- (void)setupUI {
+    
+    _viewTfSignUp.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.7];
+    _viewTfLogin.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.7];
+
     _viewLoading = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 150, 150)];
     _viewLoading.center = self.view.center;
     [_viewLoading setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.7]];
@@ -121,21 +136,23 @@
     [_viewBlurMain addSubview:_viewLoading];
     _viewLoading.hidden = YES;
     
-    UIView *viewtfEmail = [[UIView alloc] initWithFrame:CGRectMake(0, self.tfEmail.frame.size.height - 1,SCREEN_WIDTH - self.tfEmail.frame.origin.x*2, 1)];
+    UIView *viewtfEmail = [[UIView alloc] initWithFrame:CGRectMake(0, self.tfEmail.frame.size.height - 1, self.tfEmail.frame.size.width , 1)];
     viewtfEmail.backgroundColor = [UIColor colorWithRed:74/255.f green:182/255.f blue:125/255.f alpha:1];
-    UIView *viewtfPassword = [[UIView alloc] initWithFrame:CGRectMake(0, self.tfPassword.frame.size.height - 1, SCREEN_WIDTH - self.tfEmail.frame.origin.x*2, 1)];
+    
+    UIView *viewtfPassword =  [[UIView alloc] initWithFrame:CGRectMake(0, self.tfPassword.frame.size.height - 1, self.tfPassword.frame.size.width , 1)];
     viewtfPassword.backgroundColor = [UIColor colorWithRed:74/255.f green:182/255.f blue:125/255.f alpha:1];
     
-    UIView *viewtfEmailSignup = [[UIView alloc] initWithFrame:CGRectMake(0, self.tfEmailSignup.frame.size.height - 1, SCREEN_WIDTH - self.tfEmail.frame.origin.x*2, 1)];
+    UIView *viewtfEmailSignup = [[UIView alloc] initWithFrame:CGRectMake(0, self.tfEmailSignup.frame.size.height - 1,  self.tfEmailSignup.frame.size.width, 1)];
     viewtfEmailSignup.backgroundColor = [UIColor colorWithRed:74/255.f green:182/255.f blue:125/255.f alpha:1];
-    UIView *viewtfPasswordSignup = [[UIView alloc] initWithFrame:CGRectMake(0, self.tfPasswordSignup.frame.size.height - 1, SCREEN_WIDTH - self.tfEmail.frame.origin.x*2, 1)];
+    
+    UIView *viewtfPasswordSignup = [[UIView alloc] initWithFrame:CGRectMake(0, self.tfPasswordSignup.frame.size.height - 1, self.tfPasswordSignup.frame.size.width, 1)];
     viewtfPasswordSignup.backgroundColor = [UIColor colorWithRed:74/255.f green:182/255.f blue:125/255.f alpha:1];
-    UIView *viewtfUsernameSignup = [[UIView alloc] initWithFrame:CGRectMake(0, self.tfUsernameSignup.frame.size.height - 1, SCREEN_WIDTH - self.tfEmail.frame.origin.x*2, 1)];
+    
+    UIView *viewtfUsernameSignup = [[UIView alloc] initWithFrame:CGRectMake(0, self.tfUsernameSignup.frame.size.height - 1, self.tfUsernameSignup.frame.size.width, 1)];
     viewtfUsernameSignup.backgroundColor = [UIColor colorWithRed:74/255.f green:182/255.f blue:125/255.f alpha:1];
-
     
     [self.tfEmail insertSubview:viewtfEmail belowSubview:self.tfEmail];
-    [self.tfPassword insertSubview:viewtfPassword belowSubview:self.tfPassword];
+    [self.tfPassword  insertSubview:viewtfPassword belowSubview:self.tfPassword];
     [self.tfEmailSignup insertSubview:viewtfEmailSignup belowSubview:self.tfEmailSignup];
     [self.tfPasswordSignup insertSubview:viewtfPasswordSignup belowSubview:self.tfPasswordSignup];
     [self.tfUsernameSignup insertSubview:viewtfUsernameSignup belowSubview:self.tfUsernameSignup];
@@ -254,7 +271,6 @@
         NSUserDefaults *userDefalts=[NSUserDefaults standardUserDefaults];
         [userDefalts setObject:str forKey:@"AVATAR_FACEBOOK_GOOGLE"];
         [hud hide:YES];
-        
 
     }];
     
@@ -263,18 +279,30 @@
      startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
          if (!error) {
              NSLog(@"fetched user:%@", result);
-             
+             [hud hide:YES];
              NSString *email = [result objectForKey:@"email"];
              NSString *userId = [result objectForKey:@"id"];
+             NSString *username = [result objectForKey:@"name"];
+             [[NSUserDefaults standardUserDefaults] setObject:username forKey:@"preferenceNameUser"];
+             [[NSUserDefaults standardUserDefaults] synchronize];
              
-             [hud hide:YES];
+             [[NSUserDefaults standardUserDefaults] setObject:email forKey:@"preferenceEmailUser"];
+             [[NSUserDefaults standardUserDefaults] synchronize];
+
+             UIStoryboard *sb = [UIStoryboard storyboardWithName:@"StoryboardofHau" bundle:nil];
              
-             [[[UIAlertView alloc] initWithTitle:@"LOGIN THÀNH CÔNG!" message:nil delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil] show];
+             ViewController *view = [sb instantiateViewControllerWithIdentifier:@"viewdemo"];
+             UINavigationController *navi = [[UINavigationController alloc] initWithRootViewController:view];
+             
+             [self presentViewController:navi animated:YES completion:^{
+                 [self tappedLoginHere:nil];
+             }];
 
              
+//             [[[UIAlertView alloc] initWithTitle:@"LOGIN THÀNH CÔNG!" message:nil delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil] show];
+
          }
          else {
-             
              NSLog(@"%@", [error localizedDescription]);
              [hud hide:YES];
          }
@@ -427,16 +455,11 @@
     _tfEmailSignup.text = _tfUsernameSignup.text = _tfPasswordSignup.text = @"";
     _isChangeSignup = YES;
     [_btnLogin setTitle:@"SIGN UP" forState:UIControlStateNormal];
-    [UIView animateWithDuration:0.6 animations:^{
-        self.tfEmail.layer.transform = self.initialTransform;
-        self.tfEmail.layer.opacity = 0;
-        _lbSignupFB.text = @"SIGN UP WITH FACEBOOK";
-    }];
     
     [UIView animateWithDuration:0.6 animations:^{
-        
-        self.tfPassword.layer.transform = self.initialTransform;
-        self.tfPassword.layer.opacity = 0;
+        _lbSignupFB.text = @"SIGN UP WITH FACEBOOK";
+        _viewTfLogin.layer.transform = self.initialTransform;
+        _viewTfLogin.layer.opacity = 0;
         _viewForgotPW.layer.transform = self.initialTransformViewForget;
         _viewForgotPW.layer.opacity = 0;
         _viewSignupBot.layer.transform = self.initialTransformView;
@@ -490,15 +513,15 @@
         _lbSignupFB.text =  @"LOG IN WITH FACEBOOK";
     }];
     
-    self.tfPassword.layer.transform = self.tfEmail.layer.transform = self.initialTransformViewSignUp;
+    _viewTfLogin.layer.transform = self.initialTransformViewSignUp;
     self.viewSignupBot.layer.transform = _initialTransformView;
     self.viewForgotPW.layer.transform = _initialTransformViewForget;
 
-    self.tfPassword.layer.opacity = self.tfEmail.layer.opacity = 0;
+    _viewTfLogin.layer.opacity = 0;
     self.viewForgotPW.layer.opacity = self.viewSignupBot.layer.opacity = 0;
     [UIView animateWithDuration:0.8 animations:^{
-        self.tfPassword.layer.transform = self.tfEmail.layer.transform = CATransform3DIdentity;
-        self.tfPassword.layer.opacity = self.tfEmail.layer.opacity = 1;
+        _viewTfLogin.layer.transform = CATransform3DIdentity;
+        _viewTfLogin.layer.opacity = 1;
         self.viewForgotPW.layer.transform = self.viewSignupBot.layer.transform = CATransform3DIdentity;
         self.viewForgotPW.layer.opacity = self.viewSignupBot.layer.opacity = 1;
     }];
